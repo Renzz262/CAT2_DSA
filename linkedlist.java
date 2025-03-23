@@ -1,88 +1,88 @@
-public class CustomLinkedList {
+public class Linked_List {
 
-    // Each element holds a numeric value and a reference to the next element.
-    private static class Element {
-        int value;
-        Element next;
+    // Each node stores an integer value and a pointer to the next node.
+    private static class Node {
+        int data;
+        Node next;
 
-        // Constructs a new element with the given numeric value.
-        Element(int value) {
-            this.value = value;
+        // Creates a new node with the given integer value.
+        Node(int data) {
+            this.data = data;
             this.next = null;
         }
     }
 
-    // 'first' points to the initial element in the collection (or null if empty).
-    private Element first;
+    // 'head' points to the first node in the list (or null if the list is empty).
+    private Node head;
 
-    // Creates an empty linked list.
-    public LinkedList() {
-        first = null;
+    // Initializes an empty linked list.
+    public Linked_List() {
+        head = null;
     }
 
-    // Adds a new element at the start of the sequence.
-    public void addAtStart(int value) {
-        Element newElement = new Element(value);
-        newElement.next = first; // Link new element to the previous first
-        first = newElement;       // New element becomes the first
+    // inserts a new node at beggining of the list
+    public void insertAtBeginning(int data) {
+        Node newNode = new Node(data);
+        newNode.next = head; // Link the new node to the old head
+        head = newNode;      // The new node becomes the new head
     }
 
-    // Adds a new element at the conclusion of the sequence.
-    public void addAtEnd(int value) {
-        Element newElement = new Element(value);
-        if (first == null) {
-            // If empty, assign the new element as first.
-            first = newElement;
+    // inserts a new node at the end of the list
+    public void insertAtEnd(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            // If the list is empty, make the new node the head.
+            head = newNode;
         } else {
-            // Traverse the structure until the last element.
-            Element current = first;
+            // Otherwise, walk through the list until the last node.
+            Node current = head;
             while (current.next != null) {
                 current = current.next;
             }
-            // Append the new element at the last position.
-            current.next = newElement;
+            // Attach the new node at the end.
+            current.next = newNode;
         }
     }
 
-    // Deletes the element at the front.
-    // If empty, displays a message instead.
-    public void removeFromStart() {
-        if (first == null) {
-            System.out.println("The collection is vacant. No element to eliminate.");
+    // removes the node at beggining of the list
+    // if the list is empty, it prints a message instead
+    public void deleteFromBeginning() {
+        if (head == null) {
+            System.out.println("List is empty. Nothing to delete.");
         } else {
-            // Move 'first' to the subsequent element, eliminating the first.
-            first = first.next;
+            // Move 'head' to the next node, effectively removing the first node.
+            head = head.next;
         }
     }
 
-    // Displays all elements, beginning with 'first' and following each 'next' reference.
-    public void displayList() {
-        Element current = first;
+    // prints the whole entire list
+    public void printList() {
+        Node current = head;
         while (current != null) {
-            System.out.print(current.value + " => ");
+            System.out.print(current.data + " -> ");
             current = current.next;
         }
-        System.out.println("null"); // Denotes the end of the structure.
+        System.out.println("null"); // Mark the end of the list.
     }
 
-    // A simple demonstration verifying the addition and removal operations.
+    // basic test to show insertions  and deletions are working as expected
     public static void main(String[] args) {
-        CustomLinkedList collection = new CustomLinkedList();
+        Linked_List list = new Linked_List();
 
-        // Add multiple elements at the start.
-        collection.addAtStart(15);
-        collection.addAtStart(25);
+        // Insert a couple of elements at the front.
+        list.insertAtBeginning(10);
+        list.insertAtBeginning(20);
 
-        // Add an element at the conclusion.
-        collection.addAtEnd(40);
+        // Insert one element at the end.
+        list.insertAtEnd(30);
 
-        // Display the collection to confirm additions.
-        System.out.println("Linked Structure after additions:");
-        collection.displayList(); // Expected: 25 => 15 => 40 => null
+        // Print the list to verify the insertions.
+        System.out.println("Linked List after insertions:");
+        list.printList(); // Expected: 20 -> 10 -> 30 -> null
 
-        // Remove the first element and display again.
-        collection.removeFromStart();
-        System.out.println("Linked Structure after front deletion:");
-        collection.displayList(); // Expected: 15 => 40 => null
+        // Remove the first element and print the list again.
+        list.deleteFromBeginning();
+        System.out.println("Linked List after deletion from beginning:");
+        list.printList(); // Expected: 10 -> 30 -> null
     }
 }
