@@ -24,7 +24,7 @@ For example: An algorithm that works in O(n log n) time is generally faster and 
 
 
 
-Q2: Differences Between Arrays and Linked Lists
+# Q2: Differences Between Arrays and Linked Lists
 
 Arrays and linked lists differ in several key ways. How they manage memory, how efficiently they perform, and how they handle adding or removing elements. Arrays use a fixed block of memory and are faster for accessing elements, while linked lists grow dynamically and are better suited for frequent insertions and deletions.
 
